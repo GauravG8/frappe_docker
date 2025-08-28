@@ -2,6 +2,7 @@ version: "3"
 
 services:
   backend:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -18,6 +19,7 @@ services:
       MARIADB_ROOT_PASSWORD: admin
 
   configurator:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -47,6 +49,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   create-site:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -80,6 +83,7 @@ services:
         bench new-site --mariadb-user-host-login-scope='%' --admin-password=admin --db-root-username=root --db-root-password=admin --install-app erpnext --set-default frontend;
 
   db:
+    platform: linux/arm64
     image: mariadb:10.6
     networks:
       - frappe_network
@@ -102,6 +106,7 @@ services:
       - db-data:/var/lib/mysql
 
   frontend:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -128,6 +133,7 @@ services:
       - "8081:8081"
 
   queue-long:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -144,6 +150,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   queue-short:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -160,6 +167,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   redis-queue:
+    platform: linux/arm64
     image: redis:6.2-alpine
     networks:
       - frappe_network
@@ -170,6 +178,7 @@ services:
       - redis-queue-data:/data
 
   redis-cache:
+    platform: linux/arm64
     image: redis:6.2-alpine
     networks:
       - frappe_network
@@ -178,6 +187,7 @@ services:
         condition: on-failure
 
   scheduler:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
@@ -192,6 +202,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   websocket:
+    platform: linux/arm64
     image: frappe/erpnext:v15.77.0
     networks:
       - frappe_network
